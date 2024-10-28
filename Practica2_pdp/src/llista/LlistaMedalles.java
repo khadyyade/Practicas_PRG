@@ -1,11 +1,14 @@
 package llista;
 import dades.*;
 
+
+
 public class LlistaMedalles {
 
 
     private int nmedalles;
     private Medalla[] llista;
+    
 
     public LlistaMedalles(int n){
         nmedalles = 0;
@@ -28,6 +31,82 @@ public class LlistaMedalles {
         }
         return resultat;
 	}
+
+    public int consultaMedalles(String ciutat, int any, String medalla, String inicials){
+        int nummedalles = 0;
+        for (int i = 0; i < nmedalles; i++) {
+            if (llista[i].celebratEn(ciutat) && llista[i].celebratAny(any) && llista[i].esDaquestPais(inicials) && llista[i].esTipusMedalla(medalla)){
+                nummedalles++;
+            }
+        }
+        return nummedalles;
+    }
+
+    public Medalla consultaMedallaprimera (String medalla, String sexe, int any){
+        
+        int i;
+        for (i = 0; i < nmedalles; i++) {
+            if (llista[i].esDaquestSexe(sexe) && llista[i].celebratAny(any) && llista[i].esTipusMedalla(medalla)){
+                return (llista[i-1]);
+            }
+        } 
+        return null;
+        
+    }
+
+    public Medalla consultaMedallaPrimeraDona (String ciutat, int any){
+        
+        int i;
+        for (i = 0; i < nmedalles; i++) {
+            if (llista[i].celebratEn(ciutat) && llista[i].celebratAny(any) && llista[i].esDaquestSexe("Women")){
+                return (llista[i-1].copia());
+            }
+        } 
+        return null;
+    }
+
+    public String consultaPais (String medalla){
+        int numPaisos = 0;
+        int j = 0;
+        String[] taulaPaises = new String[300];
+        int[] taulaMedalles = new int[300];
+        boolean trobat = false;
+        
+        for (int i = 0; i < nmedalles; i++) {
+            if (llista[i].esTipusMedalla(medalla)){
+               while(j < numPaisos && !trobat && numPaisos!=0){
+                    if (taulaPaises[j] != null && taulaPaises[j].equals(llista[i].getPais())){
+                        trobat = true;
+                    }
+                    j++;
+                }
+                if (trobat != true){
+                    taulaPaises[j] = llista[i].getPais();
+                }
+                else {
+                    j--;
+                }
+                taulaMedalles[j]++;
+            }
+            trobat = false;
+            j=0;
+            numPaisos++;
+        }
+        int maxim = 0;
+        for (int i = 0; i < nmedalles; i++) {
+
+            if (taulaMedalles[j] > maxim){
+                maxim = taulaMedalles[j];
+            }
+
+        }
+
+        return llista[maxim].getPais();
+
+    }
+
+
+
 
     
     /*public void afegirMedalla(Medalla m){
