@@ -9,7 +9,13 @@ public class Medalla {
 	private String medalla;
 	private String tipusParticipacio;
 	private String paisAtleta;
-	
+
+	/**
+     * Constructor de la clase Medalla.
+     * @param nombre Nombre de la medalla.
+     * @param tipo Tipo de la medalla (oro, plata, bronce).
+     * @param año Año en que se obtuvo la medalla.
+     **/
 	public Medalla(String disciplina, String poblacioJocs, int anyJocs, String nomProva, String genere, String medalla,
 			String tipusParticipacio, String paisAtleta) {
 		this.disciplina = disciplina;
@@ -21,6 +27,8 @@ public class Medalla {
 		this.tipusParticipacio = tipusParticipacio;
 		this.paisAtleta = paisAtleta;
 	}
+
+	
 
 	@Override
 	public String toString() {
