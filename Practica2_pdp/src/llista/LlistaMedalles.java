@@ -105,6 +105,28 @@ public class LlistaMedalles {
     
         return taulaPaises[pos_maxim];
     }
+
+    public int[] Medaller (String pais){
+        int[] taulaMedaller = new int[3];
+        for (int i = 0; i < taulaMedaller.length;i++){
+            taulaMedaller[i]=0;
+        }
+        for (int i = 0; i < nmedalles; i++) {
+            if (llista[i].esDaquestPais(pais)) {
+                    if (llista[i].esTipusMedalla("GOLD")){
+                        taulaMedaller[0]++;
+                    }
+                    if (llista[i].esTipusMedalla("SILVER")){
+                        taulaMedaller[1]++;
+                    }
+                    if (llista[i].esTipusMedalla("BRONZE")){
+                        taulaMedaller[2]++;
+                    }
+            }
+        }
+        return (taulaMedaller);
+
+    }
     
 
 

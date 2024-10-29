@@ -117,7 +117,12 @@ public class UsaLlistaMedalles {
 			j = 0;
 
 	   }
-
+	   
+		System.out.println("GOLD: "+llista.Medaller("USA")[0]);
+		System.out.println("SILVER: "+llista.Medaller("USA")[1]);
+		System.out.println("BRONZE: "+llista.Medaller("USA")[2]);
+	   
+	   
 	   System.out.println(llista.consultaPais("SILVER"));
 
 	   System.out.println("Afegeix la població dels jocs : ");
