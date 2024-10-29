@@ -65,47 +65,47 @@ public class LlistaMedalles {
         return null;
     }
 
-    public String consultaPais (String medalla){
+
+    public String consultaPais(String medalla) {
         int numPaisos = 0;
-        int j = 0;
+        int maxim = 0;
+        int pos_maxim = 0;
         String[] taulaPaises = new String[300];
         int[] taulaMedalles = new int[300];
-        boolean trobat = false;
         
         for (int i = 0; i < nmedalles; i++) {
-            if (llista[i].esTipusMedalla(medalla)){
-               while(j < numPaisos && !trobat && numPaisos!=0){
-                    if (taulaPaises[j] != null && taulaPaises[j].equals(llista[i].getPais())){
+            if (llista[i].esTipusMedalla(medalla)) {
+                boolean trobat = false;
+                int j = 0;
+                
+                while (j < numPaisos && !trobat) {
+                    if (llista[i].esDaquestPais(taulaPaises[j])) {
                         trobat = true;
+                    } else {
+                        j++;
                     }
-                    j++;
                 }
-                if (trobat != true){
-                    taulaPaises[j] = llista[i].getPais();
+                
+                if (trobat) {
+                    taulaMedalles[j]++;
+                } else {
+                    taulaPaises[numPaisos] = llista[i].getPais();
+                    taulaMedalles[numPaisos] = 1;
+                    numPaisos++;
                 }
-                else {
-                    j--;
-                }
-                taulaMedalles[j]++;
             }
-            trobat = false;
-            j=0;
-            numPaisos++;
         }
-        int maxim = 0;
-        for (int i = 0; i < nmedalles; i++) {
-
-            if (taulaMedalles[j] > maxim){
-                maxim = taulaMedalles[j];
+    
+        for (int index = 0; index < numPaisos; index++) {
+            if (taulaMedalles[index] > maxim) {
+                maxim = taulaMedalles[index];
+                pos_maxim = index;
             }
-
         }
-
-        return llista[maxim].getPais();
-
+    
+        return taulaPaises[pos_maxim];
     }
-
-
+    
 
 
     
