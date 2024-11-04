@@ -8,13 +8,19 @@ public class LlistaMedalles {
 
     private int nmedalles;
     private Medalla[] llista;
-    
 
+	/**
+     * Constructor de la clase LlistaMedalles.
+     * @param n quantita de medalles
+     **/
     public LlistaMedalles(int n){
         nmedalles = 0;
         llista = new Medalla[n];
     }
-
+	/**
+     * Metode que afegeix medalla mentre hi hagi espai a la taula de medalles
+     * @param Medalla nova medalla
+     **/
     public void afegirMedalla(Medalla m){
 
         if(nmedalles < llista.length){
@@ -24,6 +30,11 @@ public class LlistaMedalles {
 
     }
 
+    /**
+     * Metode per mostrar totes les medalles
+     * @return String Conjunt de totes les medalles 
+     **/
+
     public String toString() {
         String resultat= "";
         for (int i = 0; i < nmedalles; i++) {
@@ -31,6 +42,15 @@ public class LlistaMedalles {
         }
         return resultat;
 	}
+
+     /**
+     * Metode per fer una consulta concreta: ciutat any medalla i pais
+     * @param ciutat
+     * @param any
+     * @param medalla
+     * @param inicials
+     * @return int total de medalles que cumpleixen les caracteristiques
+     **/
 
     public int consultaMedalles(String ciutat, int any, String medalla, String inicials){
         int nummedalles = 0;
@@ -42,29 +62,49 @@ public class LlistaMedalles {
         return nummedalles;
     }
 
+    /**
+     * Metode per fer una consulta concreta: la primera medalla que cumpleix medalla, sexe i any
+     * @param medalla
+     * @param sexe
+     * @param any
+     * @return Medalla instancia de la primera medalla
+     **/
+
     public Medalla consultaMedallaprimera (String medalla, String sexe, int any){
         
         int i;
         for (i = 0; i < nmedalles; i++) {
             if (llista[i].esDaquestSexe(sexe) && llista[i].celebratAny(any) && llista[i].esTipusMedalla(medalla)){
-                return (llista[i-1]);
+                return (llista[i]);
             }
         } 
         return null;
         
     }
+
+    /**
+     * Metode per fer una consulta concreta: la primera medalla d'una dona que cumpleix ciutat i any
+     * @param ciutat
+     * @param any
+     * @return Medalla instancia de la primera medalla
+     **/
 
     public Medalla consultaMedallaPrimeraDona (String ciutat, int any){
         
         int i;
         for (i = 0; i < nmedalles; i++) {
             if (llista[i].celebratEn(ciutat) && llista[i].celebratAny(any) && llista[i].esDaquestSexe("Women")){
-                return (llista[i-1].copia());
+                return (llista[i].copia());
             }
         } 
         return null;
     }
 
+    /**
+     * Metode per fer una consulta concreta: el pais amb mes d'una medalla concreta
+     * @param medalla
+     * @return String inicials del pais
+     **/
 
     public String consultaPais(String medalla) {
         int numPaisos = 0;
@@ -106,6 +146,13 @@ public class LlistaMedalles {
         return taulaPaises[pos_maxim];
     }
 
+    /**
+     * Metode per fer una consulta concreta: medalles de cada tipus d'un país
+     * @param pais
+     * @return int taula de quantita de medalles del pais
+     **/
+
+
     public int[] Medaller (String pais){
         int[] taulaMedaller = new int[3];
         for (int i = 0; i < taulaMedaller.length;i++){
@@ -128,7 +175,13 @@ public class LlistaMedalles {
 
     }
 
-    
+    /**
+     * Metode per fer una consulta concreta: medalles d'un tipus, ciutat y any 
+     * @param tipus
+     * @param ciutat
+     * @param any
+     * @return LlistaMedalles retorna un nou objecte amb les dades dessitjades
+     **/
 
     public LlistaMedalles medallesAconseguides(String tipus, String ciutat, int any){
 
@@ -148,6 +201,12 @@ public class LlistaMedalles {
         return llista2;
 
     }
+
+    /**
+     * Metode per esborrar totes les medalles que cumpleixen ciutat i any
+     * @param ciutat
+     * @param any
+     **/
 
     public void esborraMedalles(String ciutat, int any){
 

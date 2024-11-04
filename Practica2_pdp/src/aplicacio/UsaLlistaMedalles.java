@@ -14,13 +14,7 @@ public class UsaLlistaMedalles {
 		int numLinies = Integer.parseInt(teclat.nextLine());
 		String[] dataset = llegirLiniesFitxer(numLinies);
 
-		// mostrem el contingut que hem llegit. Això ho eliminarem en les
-		// versions finals del codi
-		for (int i = 0; i < dataset.length; i++) {
-			 System.out.println("Linia " + (i + 1) + " conté " + dataset[i]);
-		}
-
-		// Completar el codi a partir d'aquí
+		// Inicialització de variables
 
 		String disciplina = "";
 		String poblacioJocs = "";
@@ -37,6 +31,8 @@ public class UsaLlistaMedalles {
 		boolean trobat = false;
 		Medalla m;
 		LlistaMedalles llista = new LlistaMedalles(numLinies+20);
+
+		//Inseció dels elements a la classe
 
 		for (int i = 0; i < dataset.length; i++) {
 			cas = 0;
@@ -118,66 +114,18 @@ public class UsaLlistaMedalles {
 
 	   }
 	   
-		System.out.println("GOLD: "+llista.Medaller("USA")[0]);
-		System.out.println("SILVER: "+llista.Medaller("USA")[1]);
-		System.out.println("BRONZE: "+llista.Medaller("USA")[2]);
-	   
-	   
-	   System.out.println(llista.consultaPais("SILVER"));
 
-	   System.out.println("Afegeix la població dels jocs : ");
-	   poblacioJocs =  teclat.nextLine();
-	   System.out.println("Afegeix l'any del participant: ");
-	   anyJocs =  Integer.parseInt(teclat.nextLine());
-	   Medalla m2 = llista.consultaMedallaPrimeraDona(poblacioJocs, anyJocs);
-	   System.out.println(m2.toString());
-
-	   System.out.println("Afegeix l'any del participant: ");
-	   anyJocs =  Integer.parseInt(teclat.nextLine());
-	   System.out.println("Afegeix el tipus de medalla del participant: ");
-	   medalla =  teclat.nextLine();
-	   System.out.println("Afegeix el genera del participant: ");
-	   genere =  teclat.nextLine();
-	   System.out.println(llista.consultaMedallaprimera(medalla, genere, anyJocs).toString());
-	   
-	   System.out.println("Afegeix la població dels jocs : ");
-	   poblacioJocs =  teclat.nextLine();
-	   System.out.println("Afegeix l'any del participant: ");
-	   anyJocs =  Integer.parseInt(teclat.nextLine());
-	   System.out.println("Afegeix el tipus de medalla del participant: ");
-	   medalla =  teclat.nextLine();
-	   System.out.println("Afegeix el pais del participant: ");
-	   paisAtleta =  teclat.nextLine();
-
-	   System.out.println( llista.consultaMedalles(poblacioJocs, anyJocs, medalla, paisAtleta));
-
-	   System.out.println("Afegeix la disciplina del participant: ");
-		disciplina =  teclat.nextLine();
-		System.out.println("Afegeix la població dels jocs : ");
-		poblacioJocs =  teclat.nextLine();
-		System.out.println("Afegeix l'any del participant: ");
-		anyJocs =  Integer.parseInt(teclat.nextLine());
-		System.out.println("Afegeix el nom de la prova : ");
-		nomProva =  teclat.nextLine();
-		System.out.println("Afegeix el genera del participant: ");
-		genere =  teclat.nextLine();
-		System.out.println("Afegeix el tipusde participació del participant: ");
-		tipusParticipacio =  teclat.nextLine();
-		System.out.println("Afegeix el pais del participant: ");
-		paisAtleta =  teclat.nextLine();
-		System.out.println("Afegeix la medalla del participant: ");
-		medalla =  teclat.nextLine();
 
 		m = new Medalla(disciplina, poblacioJocs, anyJocs, nomProva, genere, medalla, tipusParticipacio, paisAtleta);
 		llista.afegirMedalla(m);
 
-		System.out.println(llista.toString());
+	   //Mostrar menu
 
         int opcio = 0;
 		boolean continuar = true;
 
         while (continuar) {
-            System.out.println("Menú:");
+            System.out.println("\n\n--- Menú ---\n");
             System.out.println("1. Mostrar el conjunt de dades de la llista.");
             System.out.println("2. Mostrar el número de medalles aconseguides per un país, d’un cert tipus, en els jocs d’un any en una ciutat.");
             System.out.println("3. Mostrar la primera medalla d’un cert tipus, obtinguda per una persona d’un determinat sexe i en un any.");
@@ -196,67 +144,89 @@ public class UsaLlistaMedalles {
             switch (opcio) {
                 case 1: System.out.println(llista.toString()); break;
                 case 2:  
-                    System.out.print("Introdueix les inicials del país: ");
+					System.out.print("Exemple: ITA GOLD 2022 beijing\n");
+					System.out.print(">> Introdueix les inicials del país: ");
                     paisAtleta = teclat.nextLine();
-                    System.out.print("Introdueix el tipus de medalla: ");
+                    System.out.print(">> Introdueix el tipus de medalla: ");
                     medalla = teclat.nextLine();
-                    System.out.print("Introdueix l’any: ");
+                    System.out.print(">> Introdueix l’any: ");
                     anyJocs = Integer.parseInt(teclat.nextLine());
-                    System.out.print("Introdueix la ciutat: ");
+                    System.out.print(">> Introdueix la ciutat: ");
                     poblacioJocs = teclat.nextLine();
                     System.out.println("Numero de medalles: " + llista.consultaMedalles(poblacioJocs, anyJocs, medalla, paisAtleta));
 					break;
                 case 3:
-                    System.out.print("Introdueix el tipus de medalla: ");
+					System.out.print("Exemple: GOLD Mixed 2022\n");
+                    System.out.print(">> Introdueix el tipus de medalla: ");
                     medalla = teclat.nextLine();
-                    System.out.print("Introdueix el sexe (M/F): ");
+                    System.out.print(">> Introdueix el sexe: ");
                     genere =  teclat.nextLine();
-                    System.out.print("Introdueix l’any: ");
+                    System.out.print(">> Introdueix l’any: ");
                     anyJocs = Integer.parseInt(teclat.nextLine());
                     System.out.println(llista.consultaMedallaprimera(medalla, genere, anyJocs));
 					break;
                 case 4:
-					System.out.print("Introdueix la ciutat: ");
+					System.out.print("Exemple: beijing 2022\n");
+					System.out.print(">> Introdueix la ciutat: ");
 					poblacioJocs = teclat.nextLine();
-                    System.out.print("Introdueix l’any: ");
+                    System.out.print(">> Introdueix l’any: ");
                     anyJocs = Integer.parseInt(teclat.nextLine());
                     System.out.println(llista.consultaMedallaPrimeraDona (poblacioJocs, anyJocs));
 					break;
                 case 5: 
-                    System.out.print("Introdueix el tipus de medalla: ");
+					System.out.print("Exemple: SILVER\n");
+					System.out.print(">> Introdueix el tipus de medalla: ");
                     medalla = teclat.nextLine();
                     System.out.println("País amb més medalles: " + llista.consultaPais(medalla));
 					break;
                 case 6: 
-                    System.out.print("Introdueix les inicials del país: ");
+					System.out.print("Exemple: USA\n");
+					System.out.print(">> Introdueix les inicials del país: ");
                     paisAtleta = teclat.nextLine();
-                    System.out.println("Medaller del país: " + llista.Medaller(paisAtleta));
+					System.out.println("GOLD: "+llista.Medaller(paisAtleta)[0]);
+					System.out.println("SILVER: "+llista.Medaller(paisAtleta)[1]);
+					System.out.println("BRONZE: "+llista.Medaller(paisAtleta)[2]);
 					break;
 				case 7:
-					System.out.print("Introdueix el tipus de prova: ");
+					System.out.print("Exemple: Men's Freeski Big Air 2022 beijing\n");
+					System.out.print(">> Introdueix el tipus de prova: ");
 					disciplina = teclat.nextLine();
-					System.out.print("Introdueix l'any dels jocs: ");
+					System.out.print(">> Introdueix l'any dels jocs: ");
 					anyJocs = Integer.parseInt(teclat.nextLine());
-					LlistaMedalles llista2 = llista.medallesAconseguides(disciplina, "", anyJocs);
+					System.out.print(">> Introdueix la ciutat: ");
+					poblacioJocs = teclat.nextLine();
+					LlistaMedalles llista2 = llista.medallesAconseguides(disciplina, poblacioJocs, anyJocs);
 					System.out.println(llista2.toString());
 					break;
 				case 8:
-					System.out.print("Introdueix el tipus de prova: ");
+					System.out.print("Exemple: Men's Freeski Big Air 2022 beijing GOLD Men\n");
+					System.out.print(">> Introdueix el tipus de prova: ");
 					disciplina = teclat.nextLine();
-					System.out.print("Introdueix el sexe (M/F): ");
-					genere = teclat.nextLine();
-					System.out.print("Introdueix l'any: ");
+					System.out.print(">> Introdueix l'any dels jocs: ");
 					anyJocs = Integer.parseInt(teclat.nextLine());
-					Medalla m3 = llista.consultaMedallaprimera(disciplina, genere, anyJocs);
-					System.out.println(m3.toString());
+					System.out.print(">> Introdueix la ciutat: ");
+					poblacioJocs = teclat.nextLine();
+					System.out.print(">> Introdueix el tipus de medalla: ");
+                    medalla = teclat.nextLine();
+                    System.out.print(">> Introdueix el sexe: ");
+                    genere =  teclat.nextLine();
+					LlistaMedalles llista3 = llista.medallesAconseguides(disciplina, poblacioJocs, anyJocs);
+					System.out.println(llista3.consultaMedallaprimera(medalla, genere, anyJocs));
+
 					break;
 				case 9:
-					System.out.print("Introdueix el tipus de prova: ");
-					disciplina = teclat.nextLine();
-					System.out.print("Introdueix el tipus de medalla: ");
-					medalla = teclat.nextLine();
-					String pais = llista.consultaPais(medalla);
-					System.out.println("País amb més medalles: " + pais);
+				System.out.print("Exemple: Men's Freeski Big Air 2022 beijing SILVER\n");
+				System.out.print(">> Introdueix el tipus de prova: ");
+				disciplina = teclat.nextLine();
+				System.out.print(">> Introdueix l'any dels jocs: ");
+				anyJocs = Integer.parseInt(teclat.nextLine());
+				System.out.print(">> Introdueix la ciutat: ");
+				poblacioJocs = teclat.nextLine();
+				System.out.print(">> Introdueix el tipus de medalla: ");
+				medalla = teclat.nextLine();
+				LlistaMedalles llista4 = llista.medallesAconseguides(disciplina, poblacioJocs, anyJocs);
+				System.out.println("País amb més medalles: " + llista4.consultaPais(medalla));
+
 					break;
 				case 10:
 					System.out.print("Introdueix el tipus de prova: ");
@@ -276,6 +246,8 @@ public class UsaLlistaMedalles {
                 default: System.out.println("Opció invàlida."); break;
             }
 		}
+
+
 
 	}
 
